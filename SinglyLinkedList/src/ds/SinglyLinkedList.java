@@ -45,7 +45,7 @@ public class SinglyLinkedList {
     }
 
     public int size() {
-        return this.getNodeCount();
+        return getNodeCount();
     }
 
     public boolean contains(int number) {
@@ -53,7 +53,7 @@ public class SinglyLinkedList {
     }
 
     public boolean empty() {
-        return true;
+        return getNodeCount() == 0;
     }
 
 
