@@ -33,12 +33,26 @@ public class SinglyLinkedList {
     }
 
     public int get(int index) {
-        return 0;
+        if (empty()) {
+            throw new RuntimeException("Singly Linked list is empty");
+        }
+        int nodeCount = getNodeCount();
+        if (index > nodeCount) {
+            throw new RuntimeException("Given index is out of bound of Sinlgy Linked List");
+        }
+        Node nextNode = getFirstNode();
+        for (int i = 0; i <= index; i++) {
+            if (i == index) {
+                break;
+            }
+            nextNode = nextNode.getNextNode();
+        }
+        return nextNode.getData();
     }
 
     public void print() {
         if (empty()) {
-            System.out.println("Linked list is empty");
+            System.out.println("Singly Linked list is empty");
         } else {
             int nodeCount = getNodeCount();
             Node nextNode = getFirstNode();
