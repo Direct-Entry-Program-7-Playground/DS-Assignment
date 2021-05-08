@@ -21,10 +21,30 @@ public class SinglyLinkedList {
     }
 
     public void add(int number) {
-
+        add(getNodeCount(), number);
     }
 
     public void add(int index, int number) {
+        int nodeCount = getNodeCount();
+        if ((index >= 0) && (index <= nodeCount)) {
+            Node oldNode;
+            Node newNode;
+
+            if (index == 0) {
+                oldNode = nodeCount == 0 ? null : getFirstNode();
+                newNode = new Node(number, oldNode);
+                setFirstNode(newNode);
+            } else if (index == nodeCount) {
+                newNode = new Node(number, null);
+                getNode(index - 1).setNextNode(newNode);
+            } else {
+                newNode = new Node(number, getNode(index));
+                getNode(index - 1).setNextNode(newNode);
+            }
+            setNodeCount(++nodeCount);
+        } else {
+            System.out.println("Given index is out of bound of Sinlgy Linked List or negative index given");
+        }
 
     }
 
@@ -32,41 +52,44 @@ public class SinglyLinkedList {
 
     }
 
-    public int get(int index) {
+    private Node getNode(int index) {
         if (empty()) {
-            throw new RuntimeException("Singly Linked list is empty");
+            return null;
         }
         int nodeCount = getNodeCount();
-        if (index > nodeCount) {
+        if (index >= nodeCount) {
             throw new RuntimeException("Given index is out of bound of Sinlgy Linked List");
         }
-        Node nextNode = getFirstNode();
+        Node node = getFirstNode();
         for (int i = 0; i <= index; i++) {
             if (i == index) {
                 break;
             }
-            nextNode = nextNode.getNextNode();
+            node = node.getNextNode();
         }
-        return nextNode.getData();
+        return node;
+    }
+
+    public int get(int index) {
+        return getNode(index).getData();
     }
 
     public void print() {
-        if (empty()) {
-            System.out.println("Singly Linked list is empty");
-        } else {
+        System.out.print("[");
+        if (!empty()) {
             int nodeCount = getNodeCount();
             Node nextNode = getFirstNode();
             for (int i = 0; i < nodeCount; i++) {
-                if (i == 0) {
-                    System.out.println("[" + nextNode.getData() + ",");
-                } else if (i == (nodeCount - 1)) {
-                    System.out.println(nextNode.getData() + "]");
+                if (i != (nodeCount - 1)) {
+                    System.out.print(nextNode.getData() + ",");
                 } else {
-                    System.out.println(nextNode.getData() + ",");
+                    System.out.print(nextNode.getData());
                 }
                 nextNode = nextNode.getNextNode();
             }
         }
+        System.out.println("]");
+
     }
 
     public void clear() {
