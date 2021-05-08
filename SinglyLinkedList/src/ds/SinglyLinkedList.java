@@ -69,7 +69,7 @@ public class SinglyLinkedList {
     }
 
     public boolean empty() {
-        return firstNode.equals(null);
+        return firstNode == null;
     }
 
 
