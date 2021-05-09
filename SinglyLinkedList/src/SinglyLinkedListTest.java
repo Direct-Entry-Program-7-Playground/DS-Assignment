@@ -13,13 +13,14 @@ public class SinglyLinkedListTest {
         singlyLinkedList.add(3);
         singlyLinkedList.add(4);
         singlyLinkedList.print();
-        System.out.println(singlyLinkedList.size());
+        System.out.println("Size: "+singlyLinkedList.size());
         System.out.println(singlyLinkedList.get(0));
         System.out.println(singlyLinkedList.get(1));
         singlyLinkedList.add(3,5);
         singlyLinkedList.add(2,10);
         singlyLinkedList.print();
         System.out.println(singlyLinkedList.get(3));
+        System.out.println("Contains: "+singlyLinkedList.contains(105));
 
     }
 }

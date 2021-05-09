@@ -102,6 +102,14 @@ public class SinglyLinkedList {
     }
 
     public boolean contains(int number) {
+        if (!empty()) {
+            int nodeCount = getNodeCount();
+            for (int i = 0; i < nodeCount; i++) {
+                if (get(i) == number) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
