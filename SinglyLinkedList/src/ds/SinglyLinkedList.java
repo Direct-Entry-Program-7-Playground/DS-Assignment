@@ -49,7 +49,21 @@ public class SinglyLinkedList {
     }
 
     public void remove(int index) {
-
+        if (empty()) {
+            System.out.println("Sinlgy Linked List is empty, nothing to remove");
+        } else {
+            int nodeCount = getNodeCount();
+            if ((index >= 0) && (index < nodeCount)) {
+                if (index == 0) {
+                    setFirstNode(getFirstNode().getNextNode());
+                } else {
+                    getNode(index - 1).setNextNode(getNode(index).getNextNode());
+                }
+                setNodeCount(--nodeCount);
+            } else {
+                System.out.println("Given index is out of bound of Sinlgy Linked List or negative index given");
+            }
+        }
     }
 
     private Node getNode(int index) {
@@ -57,6 +71,9 @@ public class SinglyLinkedList {
             return null;
         }
         int nodeCount = getNodeCount();
+        if (index < 0) {
+            throw new RuntimeException("Given index is negative");
+        }
         if (index >= nodeCount) {
             throw new RuntimeException("Given index is out of bound of Sinlgy Linked List");
         }
